@@ -1,0 +1,8 @@
+{
+  "name": "probertson-create-pr",
+  "description": "Push the current branch and open a GitHub pull request via the gh CLI.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Paul Robertson"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "probertson-ship-it",
+  "description": "One-command ship: self-review, optional CHANGELOG bump, then open the PR. Stops at an open PR.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Paul Robertson"
+  }
+}

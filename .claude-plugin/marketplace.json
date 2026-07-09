@@ -1,0 +1,35 @@
+{
+  "name": "probertson-skills",
+  "owner": {
+    "name": "Paul Robertson"
+  },
+  "plugins": [
+    {
+      "name": "probertson-review",
+      "source": "./plugins/probertson-review",
+      "description": "Code-review toolkit: self-review your own diff, review someone else's branch in a throwaway worktree, and a shared set of generic (non-proprietary) review guidelines — plus the code-reviewer agent that applies them. Self-contained; no dependencies."
+    },
+    {
+      "name": "probertson-create-pr",
+      "source": "./plugins/probertson-create-pr",
+      "description": "Push the current branch and open a GitHub pull request with a real multi-line Markdown description via the gh CLI. Just the open-the-PR step."
+    },
+    {
+      "name": "probertson-ship-it",
+      "source": "./plugins/probertson-ship-it",
+      "description": "One-command ship: self-review the branch diff, optionally bump a CHANGELOG, then open the PR. Stops at an open PR — does not merge.",
+      "dependencies": [
+        { "name": "probertson-review" },
+        { "name": "probertson-create-pr" }
+      ]
+    },
+    {
+      "name": "probertson-review-hook",
+      "source": "./plugins/probertson-review-hook",
+      "description": "Opt-in guardrail: a PreToolUse hook that blocks git commit until self-review has run in the session. Install this only if you want the commit block enforced automatically.",
+      "dependencies": [
+        { "name": "probertson-review" }
+      ]
+    }
+  ]
+}

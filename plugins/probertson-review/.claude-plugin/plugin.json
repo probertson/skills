@@ -1,0 +1,8 @@
+{
+  "name": "probertson-review",
+  "description": "Code-review toolkit: self-review, review-someone-else's-branch, generic review guidelines, and the code-reviewer agent.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Paul Robertson"
+  }
+}

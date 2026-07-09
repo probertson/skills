@@ -1,0 +1,8 @@
+{
+  "name": "probertson-review-hook",
+  "description": "Opt-in PreToolUse hook that blocks git commit until self-review has run in the session.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Paul Robertson"
+  }
+}

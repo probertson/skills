@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'tool_input=$(cat); cmd=$(echo \"$tool_input\" | jq -r \".tool_input.command // \\\"\\\"\"); if ! echo \"$cmd\" | grep -qE \"^\\\\s*git\\\\s+commit\\\\b\"; then exit 0; fi; transcript_path=$(echo \"$tool_input\" | jq -r \".transcript_path // \\\"\\\"\"); if [ -z \"$transcript_path\" ] || [ ! -f \"$transcript_path\" ]; then echo \"Run /probertson-review:self-review before committing.\" >&2; exit 2; fi; prior=$(grep -n \"\\\"command\\\":\\\"git commit\" \"$transcript_path\" | sed \\$d | tail -1 | cut -d: -f1); start=${prior:-0}; if tail -n +$((start+1)) \"$transcript_path\" | grep -qE \"probertson-review:self-review|/probertson-review:self-review\"; then exit 0; fi; echo \"Run /probertson-review:self-review before committing.\" >&2; exit 2'"
+          }
+        ]
+      }
+    ]
+  }
+}

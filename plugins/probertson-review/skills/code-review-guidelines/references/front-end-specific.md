@@ -1,0 +1,16 @@
+### Additional guidelines that are specific to front-end code
+
+These examples assume a React + CSS front end. Adapt the specifics to your stack; the intent behind each rule generalizes.
+
+#### What To Look For
+
+1. **Test quality**: Verify tests are actually testing what they claim. This requires reading both the test description and its assertions carefully together:
+   - A test named "updates selection when clicking X" must assert on _which item is selected_, not merely that elements exist in the document. `toBeInTheDocument()` only proves an element rendered — it does not prove state changed or that a specific item became selected/active/checked.
+   - Flag any test where the description implies a state change, user interaction outcome, or behavioral assertion, but the assertions only use `toBeInTheDocument()` (or similarly weak matchers like `toBeVisible()`). These are almost always false-confidence tests.
+   - A valid exception: if the element's _presence_ is itself the behavioral outcome (e.g., an error message appearing), then `toBeInTheDocument()` is correct — but the test description should make this clear. If it doesn't, flag it.
+2. **Translations for strings**: With the exception of logging, English text should not be hard-coded in application code. A translation mechanism with an identifier should be used instead.
+3. **Dynamic urls**: Generated paths that include user-provided or otherwise untrusted values should be built with a helper that sanitizes those values, rather than by raw string interpolation. If your project provides a URL/path builder (an `interpUri`/`interpPath`-style helper), use it; otherwise ensure the values are encoded/validated before they reach the URL.
+4. **`px` units in CSS**: Flag any new CSS that uses `px` for sizing properties (font sizes, spacing, margins, padding, borders, etc.). Prefer `rem` or other relative units for accessibility — `px` values do not scale when the user changes their browser's base font size.
+5. **Styled-component overuse**: Flag new `styled.X` or `styled(Component)` definitions that wrap a standard UI element (button, input, modal, dropdown, accordion, form field, link, etc.). If your project has a shared component library that provides standard variants for common UI elements, creating a one-off styled version of a primitive is almost always a sign that an existing library component should be used instead. Exceptions are legitimate layout/container components (e.g., a `styled.div` used purely for spacing or flex layout). When flagging, note that the reviewer should verify whether a suitable library component exists before raising it as a definite issue.
+6. **Over-specific CSS selectors**: If a styled component has nested child selectors, check that they are as minimally specific as necessary. For example, a selector for `tbody tr td:first-child` could probably be simplified to `td:first-child`, unless there are other very complex selectors that could conflict.
+7. **i18n wrappers in tests**: Testing-library's `render` and `renderHook` functions don't handle translation strings properly by default. If your project provides i18n-aware wrappers around those functions (ones that automatically wire up the translation context), use them instead of manually adding an `<IntlProvider>` (or equivalent provider) to each test file.
