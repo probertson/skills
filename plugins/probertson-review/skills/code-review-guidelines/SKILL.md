@@ -18,8 +18,9 @@ The project-type-specific rules below assume a TypeScript stack — the front-en
 2. **Complex logic that can be simplified**: If the fix introduced convoluted control flow, suggest clearer alternatives.
 3. **Comments that shouldn't persist**: Remove "notes to self" comments, ticket references in code (those belong in git history), or explanatory comments that restate what the code does.
 4. **Unnecessary type assertions**: Flag any `as any`, `as unknown as X`, or other type casts that could be replaced with proper type narrowing.
-5. **Test coverage**: Verify that for any new or updated code that involves branching logic, unit tests were added or updated to test the behavior of the code paths
-6. **Guidelines for specific project types** Additional rules for specific types of code/repositories. These should be treated as equal to the guidelines here:
+5. **Potential regressions or gaps**: Type checking should catch direct callers that break, but look beyond that to indirect consumers (for example, across writes and reads and subsystem boundaries). Does this change existing behavior and/or data shapes? Is it new work that replaces functionality of an existing system (even if the existing system is left in place)? If so, have all the places the previous code touched been updated?
+6. **Test coverage**: Verify that for any new or updated code that involves branching logic, unit tests were added or updated to test the behavior of the code paths
+7. **Guidelines for specific project types** Additional rules for specific types of code/repositories. These should be treated as equal to the guidelines here:
    - If the code under review is front-end code (React, CSS), see [front-end-specific.md](./references/front-end-specific.md) for additional guidelines.
    - If the code under review is backend code (NestJS, microservice, REST endpoint), see [back-end-specific.md](./references/back-end-specific.md) for additional guidelines.
 
