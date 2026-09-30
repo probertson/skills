@@ -1,6 +1,6 @@
 # probertson-skills
 
-A small marketplace of [Claude Code](https://docs.claude.com/en/docs/claude-code) plugins by Paul Robertson, focused on code review and shipping work to GitHub.
+A small marketplace of [Claude Code](https://docs.claude.com/en/docs/claude-code) plugins by Paul Robertson, mostly focused on code review and shipping work to GitHub.
 
 Each plugin is independently installable — install just the piece you want.
 
@@ -12,6 +12,7 @@ Each plugin is independently installable — install just the piece you want.
 | **probertson-create-pr** | `create-pr` — push the current branch and open a GitHub PR with a real multi-line description, via the `gh` CLI | — |
 | **probertson-ship-it** | `ship-it` — one command: self-review the branch diff → (optional CHANGELOG bump) → open the PR. Stops at an open PR; does not merge | probertson-review, probertson-create-pr |
 | **probertson-review-hook** | An **opt-in** `PreToolUse` hook that blocks `git commit` until `self-review` has run in the session | probertson-review |
+| **probertson-eli5** | `/eli5` — when an explanation assumes too much, ask Claude to step back and re-explain with more background. User-invoked only (Claude won't trigger it on its own) | — |
 
 ## Install
 
@@ -22,6 +23,7 @@ Add the marketplace, then install the plugins you want:
 /plugin install probertson-review@probertson-skills
 /plugin install probertson-create-pr@probertson-skills
 /plugin install probertson-ship-it@probertson-skills
+/plugin install probertson-eli5@probertson-skills
 ```
 
 Plugins with dependencies pull them in automatically — installing `probertson-ship-it` also brings `probertson-review` and `probertson-create-pr`.

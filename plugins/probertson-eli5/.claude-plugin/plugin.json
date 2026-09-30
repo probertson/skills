@@ -1,0 +1,8 @@
+{
+  "name": "probertson-eli5",
+  "description": "User-invoked /eli5: ask Claude to step back and re-explain with more background, assuming less prior knowledge.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Paul Robertson"
+  }
+}
